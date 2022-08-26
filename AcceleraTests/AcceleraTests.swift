@@ -2,7 +2,7 @@
 //  AcceleraTests.swift
 //  AcceleraTests
 //
-//  Created by Evgeny Boganov on 15.08.2022.
+//  Created by Evgeny Boganov on 11.08.2022.
 //
 
 import XCTest

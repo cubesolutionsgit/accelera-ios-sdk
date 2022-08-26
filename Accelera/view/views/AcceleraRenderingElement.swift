@@ -1,0 +1,151 @@
+//
+//  AcceleraRenderingElement.swift
+//  Accelera
+//
+//  Created by Evgeny Boganov on 19.08.2022.
+//
+
+import Foundation
+import UIKit
+
+protocol AcceleraRenderingElement {
+    var name: String { get }
+    var attributes: [String: String] { get }
+    var descendents: [AcceleraRenderingElement] { get }
+    var text: String? { get }
+}
+
+extension AcceleraRenderingElement {
+        
+    func getAttribute(_ name: String) -> String? {
+        return attributes[name]
+    }
+    
+    var width: CGFloat? {
+        guard let w = self.getAttribute("width")?.digits, !w.isEmpty else {
+            return nil
+
+        }
+        return CGFloat(Int(w)!)
+    }
+
+    var height: CGFloat? {
+        guard let h = self.getAttribute("height")?.digits, !h.isEmpty else {
+            return nil
+        }
+        return CGFloat(Int(h)!)
+    }
+    
+    var align: String? {
+        let a = self.getAttribute("align")
+        return (a ?? "").isEmpty ? nil : a!
+    }
+    
+    var href: String? {
+        let h = self.getAttribute("href")
+        return (h ?? "").isEmpty ? nil : h!
+    }
+    
+    var margin: UIEdgeInsets? {
+        guard let m = self.getAttribute("margin") else {
+            return nil
+        }
+        
+        if m.isEmpty {
+            return UIEdgeInsets.zero
+        }
+
+        let values = m.components(separatedBy: " ").map{Int($0.digits)!}
+
+        let top = values[safe: 0] ?? 0
+        let right = values[safe: 1] ?? top
+        let bottom = values[safe: 2] ?? top
+        let left = values[safe: 3] ?? right
+
+        return UIEdgeInsets(top: CGFloat(top), left: CGFloat(left), bottom: CGFloat(bottom), right: CGFloat(right))
+
+    }
+
+    var padding: UIEdgeInsets? {
+        guard let p = self.getAttribute("padding") else {
+            return nil
+        }
+        
+        if p.isEmpty {
+            return UIEdgeInsets.zero
+        }
+
+        let values = p.components(separatedBy: " ").map{Int($0.digits)!}
+
+        let top = values[safe: 0] ?? 0
+        let right = values[safe: 1] ?? top
+        let bottom = values[safe: 2] ?? top
+        let left = values[safe: 3] ?? right
+
+        return UIEdgeInsets(top: CGFloat(top), left: CGFloat(left), bottom: CGFloat(bottom), right: CGFloat(right))
+
+    }
+    
+    var color: UIColor? {
+        guard let c = self.getAttribute("color"), !c.isEmpty else {
+            return nil
+
+        }
+        return UIColor(hex: c)
+    }
+
+    var backgroundColor: UIColor? {
+        guard let bc = self.getAttribute("background-color"), !bc.isEmpty else {
+            return nil
+
+        }
+        return UIColor(hex: bc)
+    }
+
+    var level: Int? {
+        guard let l = self.getAttribute("level")?.digits, !l.isEmpty else {
+            return nil
+
+        }
+        return Int(l)
+    }
+
+    var fontSize: CGFloat? {
+        guard let fs = self.getAttribute("font-size")?.digits, !fs.isEmpty else {
+            return nil
+
+        }
+        return CGFloat(Int(fs)!)
+    }
+    
+    var borderRadius: CGFloat? {
+        guard let br = self.getAttribute("border-radius")?.digits, !br.isEmpty else {
+            return nil
+
+        }
+        return CGFloat(Int(br)!)
+    }
+    
+    var border: (size: CGFloat, type: String, color: UIColor)? {
+        guard let b = self.getAttribute("border"), !b.isEmpty else {
+            return nil
+        }
+        
+        let borderParams = b.split(separator: " ")
+        guard borderParams.count == 3 else {
+            return nil
+        }
+        let size = CGFloat(Int(String(borderParams[0]).digits) ?? 0)
+        let type = String(borderParams[1])
+        let color = UIColor(hex: String(borderParams[2]))
+        
+        return (size, type, color)
+    }
+}
+
+// if we change parsing impelemtation then extend new Element to implement AcceleraRenderingElement
+extension Element: AcceleraRenderingElement {    
+    var descendents: [AcceleraRenderingElement] {
+        return self.children
+    }
+}

@@ -7,10 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CBE688CB23110390665A196 /* Pods_Accelera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66645C0870C3A4996074C641 /* Pods_Accelera.framework */; };
+		5C18925428AFD9A6004C5359 /* AcceleraBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18925328AFD9A6004C5359 /* AcceleraBannerViewController.swift */; };
+		5C18925828B0054A004C5359 /* AcceleraAbstractView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18925728B0054A004C5359 /* AcceleraAbstractView.swift */; };
+		5C18925E28B00A1A004C5359 /* AcceleraButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18925D28B00A1A004C5359 /* AcceleraButton.swift */; };
+		5C18926028B00A3F004C5359 /* AcceleraLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18925F28B00A3F004C5359 /* AcceleraLabel.swift */; };
+		5C18926228B00A5F004C5359 /* AcceleraImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18926128B00A5F004C5359 /* AcceleraImageView.swift */; };
+		5C18926528B00E82004C5359 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18926428B00E82004C5359 /* String+.swift */; };
+		5C18926728B01454004C5359 /* Collection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18926628B01454004C5359 /* Collection+.swift */; };
+		5C18926928B01C95004C5359 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18926828B01C95004C5359 /* UIColor+.swift */; };
+		5C18926B28B022BA004C5359 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18926A28B022BA004C5359 /* UIFont+.swift */; };
+		5C18928028B26BD7004C5359 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18927F28B26BD7004C5359 /* HTMLParser.swift */; };
+		5C18928228B26D35004C5359 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18928128B26D35004C5359 /* Element.swift */; };
+		5C18928428B27B63004C5359 /* HTMLParserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18928328B27B63004C5359 /* HTMLParserError.swift */; };
+		5C18928628B2B697004C5359 /* AcceleraRenderingElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18928528B2B697004C5359 /* AcceleraRenderingElement.swift */; };
+		5C18928828B3AC11004C5359 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18928728B3AC11004C5359 /* UIButton+.swift */; };
+		5C18928A28B3B2D8004C5359 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18928928B3B2D8004C5359 /* CGFloat+.swift */; };
+		5CAFAC6228B8BA430028CDF0 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAFAC6128B8BA430028CDF0 /* UILabel+.swift */; };
+		5CAFAC6628B8C4140028CDF0 /* Accelera.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 5CAFAC6528B8C4140028CDF0 /* Accelera.podspec */; };
+		5CAFAC6828B8C5700028CDF0 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 5CAFAC6728B8C5700028CDF0 /* LICENSE */; };
+		5CEC23D628B6291300F0190F /* AcceleraBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEC23D528B6291300F0190F /* AcceleraBlock.swift */; };
+		5CEC23D828B6C1DD00F0190F /* NSMutableAttributedString+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEC23D728B6C1DD00F0190F /* NSMutableAttributedString+.swift */; };
+		5CEC23DA28B7941F00F0190F /* BidirectionalCollection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEC23D928B7941F00F0190F /* BidirectionalCollection+.swift */; };
+		5CEC23DC28B7A96900F0190F /* AcceleraBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEC23DB28B7A96900F0190F /* AcceleraBannerView.swift */; };
 		5CF3811D28AA9039002C691D /* Accelera.docc in Sources */ = {isa = PBXBuildFile; fileRef = 5CF3811C28AA9039002C691D /* Accelera.docc */; };
 		5CF3812328AA903A002C691D /* Accelera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CF3811828AA9039002C691D /* Accelera.framework */; };
 		5CF3812828AA903A002C691D /* AcceleraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF3812728AA903A002C691D /* AcceleraTests.swift */; };
 		5CF3812928AA903A002C691D /* Accelera.h in Headers */ = {isa = PBXBuildFile; fileRef = 5CF3811B28AA9039002C691D /* Accelera.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5CF3813328AAAB08002C691D /* Accelera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF3813228AAAB08002C691D /* Accelera.swift */; };
+		5CF3813928AAAF47002C691D /* AcceleraConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF3813828AAAF47002C691D /* AcceleraConfig.swift */; };
+		5CF3813C28AABC9B002C691D /* WebClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF3813B28AABC9B002C691D /* WebClient.swift */; };
+		5CF3813F28AAC0E5002C691D /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF3813E28AAC0E5002C691D /* NetworkError.swift */; };
+		5CF3814428AAC3BB002C691D /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF3814328AAC3BB002C691D /* URL+.swift */; };
+		5CF3814728AAC424002C691D /* URLRequest+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF3814628AAC424002C691D /* URLRequest+.swift */; };
+		5CF3814B28AAC8CE002C691D /* AcceleraAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF3814A28AAC8CE002C691D /* AcceleraAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,11 +54,43 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		52776543533C321F2246A8DE /* Pods-Accelera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Accelera.release.xcconfig"; path = "Target Support Files/Pods-Accelera/Pods-Accelera.release.xcconfig"; sourceTree = "<group>"; };
+		5C18925328AFD9A6004C5359 /* AcceleraBannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceleraBannerViewController.swift; sourceTree = "<group>"; };
+		5C18925728B0054A004C5359 /* AcceleraAbstractView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceleraAbstractView.swift; sourceTree = "<group>"; };
+		5C18925D28B00A1A004C5359 /* AcceleraButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceleraButton.swift; sourceTree = "<group>"; };
+		5C18925F28B00A3F004C5359 /* AcceleraLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceleraLabel.swift; sourceTree = "<group>"; };
+		5C18926128B00A5F004C5359 /* AcceleraImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceleraImageView.swift; sourceTree = "<group>"; };
+		5C18926428B00E82004C5359 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		5C18926628B01454004C5359 /* Collection+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+.swift"; sourceTree = "<group>"; };
+		5C18926828B01C95004C5359 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		5C18926A28B022BA004C5359 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		5C18927F28B26BD7004C5359 /* HTMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLParser.swift; sourceTree = "<group>"; };
+		5C18928128B26D35004C5359 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
+		5C18928328B27B63004C5359 /* HTMLParserError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLParserError.swift; sourceTree = "<group>"; };
+		5C18928528B2B697004C5359 /* AcceleraRenderingElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceleraRenderingElement.swift; sourceTree = "<group>"; };
+		5C18928728B3AC11004C5359 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		5C18928928B3B2D8004C5359 /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
+		5CAFAC6128B8BA430028CDF0 /* UILabel+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
+		5CAFAC6528B8C4140028CDF0 /* Accelera.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Accelera.podspec; sourceTree = "<group>"; };
+		5CAFAC6728B8C5700028CDF0 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		5CEC23D528B6291300F0190F /* AcceleraBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceleraBlock.swift; sourceTree = "<group>"; };
+		5CEC23D728B6C1DD00F0190F /* NSMutableAttributedString+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+.swift"; sourceTree = "<group>"; };
+		5CEC23D928B7941F00F0190F /* BidirectionalCollection+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BidirectionalCollection+.swift"; sourceTree = "<group>"; };
+		5CEC23DB28B7A96900F0190F /* AcceleraBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceleraBannerView.swift; sourceTree = "<group>"; };
 		5CF3811828AA9039002C691D /* Accelera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Accelera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CF3811B28AA9039002C691D /* Accelera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Accelera.h; sourceTree = "<group>"; };
 		5CF3811C28AA9039002C691D /* Accelera.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Accelera.docc; sourceTree = "<group>"; };
 		5CF3812228AA903A002C691D /* AcceleraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AcceleraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CF3812728AA903A002C691D /* AcceleraTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceleraTests.swift; sourceTree = "<group>"; };
+		5CF3813228AAAB08002C691D /* Accelera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accelera.swift; sourceTree = "<group>"; };
+		5CF3813828AAAF47002C691D /* AcceleraConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceleraConfig.swift; sourceTree = "<group>"; };
+		5CF3813B28AABC9B002C691D /* WebClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebClient.swift; sourceTree = "<group>"; };
+		5CF3813E28AAC0E5002C691D /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		5CF3814328AAC3BB002C691D /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
+		5CF3814628AAC424002C691D /* URLRequest+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+.swift"; sourceTree = "<group>"; };
+		5CF3814A28AAC8CE002C691D /* AcceleraAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceleraAPI.swift; sourceTree = "<group>"; };
+		66645C0870C3A4996074C641 /* Pods_Accelera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Accelera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CAD424FF12F9BBBCF44B37E /* Pods-Accelera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Accelera.debug.xcconfig"; path = "Target Support Files/Pods-Accelera/Pods-Accelera.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CBE688CB23110390665A196 /* Pods_Accelera.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,12 +113,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1501927DDD1039D6B5528E55 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				66645C0870C3A4996074C641 /* Pods_Accelera.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5C18925C28B009F7004C5359 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				5C18928528B2B697004C5359 /* AcceleraRenderingElement.swift */,
+				5C18925728B0054A004C5359 /* AcceleraAbstractView.swift */,
+				5CEC23D528B6291300F0190F /* AcceleraBlock.swift */,
+				5C18925D28B00A1A004C5359 /* AcceleraButton.swift */,
+				5C18925F28B00A3F004C5359 /* AcceleraLabel.swift */,
+				5C18926128B00A5F004C5359 /* AcceleraImageView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		5C18926328B00E6D004C5359 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5CAFAC6128B8BA430028CDF0 /* UILabel+.swift */,
+				5C18926428B00E82004C5359 /* String+.swift */,
+				5CEC23D928B7941F00F0190F /* BidirectionalCollection+.swift */,
+				5CEC23D728B6C1DD00F0190F /* NSMutableAttributedString+.swift */,
+				5C18926628B01454004C5359 /* Collection+.swift */,
+				5C18926828B01C95004C5359 /* UIColor+.swift */,
+				5C18926A28B022BA004C5359 /* UIFont+.swift */,
+				5C18928728B3AC11004C5359 /* UIButton+.swift */,
+				5C18928928B3B2D8004C5359 /* CGFloat+.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		5C18927E28B26BB9004C5359 /* parser */ = {
+			isa = PBXGroup;
+			children = (
+				5C18927F28B26BD7004C5359 /* HTMLParser.swift */,
+				5C18928328B27B63004C5359 /* HTMLParserError.swift */,
+				5C18928128B26D35004C5359 /* Element.swift */,
+			);
+			path = parser;
+			sourceTree = "<group>";
+		};
 		5CF3810E28AA9039002C691D = {
 			isa = PBXGroup;
 			children = (
+				5CAFAC6528B8C4140028CDF0 /* Accelera.podspec */,
+				5CAFAC6728B8C5700028CDF0 /* LICENSE */,
 				5CF3811A28AA9039002C691D /* Accelera */,
 				5CF3812628AA903A002C691D /* AcceleraTests */,
 				5CF3811928AA9039002C691D /* Products */,
+				9B4590F9043A3EE147B9F635 /* Pods */,
+				1501927DDD1039D6B5528E55 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +185,13 @@
 		5CF3811A28AA9039002C691D /* Accelera */ = {
 			isa = PBXGroup;
 			children = (
+				5C18927E28B26BB9004C5359 /* parser */,
+				5CF3813D28AABED1002C691D /* networking */,
+				5CF3813A28AABC8D002C691D /* api */,
+				5CF3813428AAAB5C002C691D /* view */,
+				5C18926328B00E6D004C5359 /* extensions */,
+				5CF3813228AAAB08002C691D /* Accelera.swift */,
+				5CF3813828AAAF47002C691D /* AcceleraConfig.swift */,
 				5CF3811B28AA9039002C691D /* Accelera.h */,
 				5CF3811C28AA9039002C691D /* Accelera.docc */,
 			);
@@ -83,6 +204,44 @@
 				5CF3812728AA903A002C691D /* AcceleraTests.swift */,
 			);
 			path = AcceleraTests;
+			sourceTree = "<group>";
+		};
+		5CF3813428AAAB5C002C691D /* view */ = {
+			isa = PBXGroup;
+			children = (
+				5C18925C28B009F7004C5359 /* views */,
+				5C18925328AFD9A6004C5359 /* AcceleraBannerViewController.swift */,
+				5CEC23DB28B7A96900F0190F /* AcceleraBannerView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		5CF3813A28AABC8D002C691D /* api */ = {
+			isa = PBXGroup;
+			children = (
+				5CF3814A28AAC8CE002C691D /* AcceleraAPI.swift */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		5CF3813D28AABED1002C691D /* networking */ = {
+			isa = PBXGroup;
+			children = (
+				5CF3813B28AABC9B002C691D /* WebClient.swift */,
+				5CF3813E28AAC0E5002C691D /* NetworkError.swift */,
+				5CF3814328AAC3BB002C691D /* URL+.swift */,
+				5CF3814628AAC424002C691D /* URLRequest+.swift */,
+			);
+			path = networking;
+			sourceTree = "<group>";
+		};
+		9B4590F9043A3EE147B9F635 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7CAD424FF12F9BBBCF44B37E /* Pods-Accelera.debug.xcconfig */,
+				52776543533C321F2246A8DE /* Pods-Accelera.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -103,6 +262,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5CF3812C28AA903A002C691D /* Build configuration list for PBXNativeTarget "Accelera" */;
 			buildPhases = (
+				1C4E943A07A5F6C45D54B7EC /* [CP] Check Pods Manifest.lock */,
 				5CF3811328AA9039002C691D /* Headers */,
 				5CF3811428AA9039002C691D /* Sources */,
 				5CF3811528AA9039002C691D /* Frameworks */,
@@ -177,6 +337,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CAFAC6828B8C5700028CDF0 /* LICENSE in Resources */,
+				5CAFAC6628B8C4140028CDF0 /* Accelera.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,12 +351,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1C4E943A07A5F6C45D54B7EC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Accelera-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5CF3811428AA9039002C691D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CEC23D828B6C1DD00F0190F /* NSMutableAttributedString+.swift in Sources */,
+				5CEC23DA28B7941F00F0190F /* BidirectionalCollection+.swift in Sources */,
+				5CF3813C28AABC9B002C691D /* WebClient.swift in Sources */,
+				5CEC23D628B6291300F0190F /* AcceleraBlock.swift in Sources */,
+				5C18928628B2B697004C5359 /* AcceleraRenderingElement.swift in Sources */,
+				5C18926B28B022BA004C5359 /* UIFont+.swift in Sources */,
+				5C18926928B01C95004C5359 /* UIColor+.swift in Sources */,
+				5C18925E28B00A1A004C5359 /* AcceleraButton.swift in Sources */,
+				5C18926028B00A3F004C5359 /* AcceleraLabel.swift in Sources */,
+				5C18928228B26D35004C5359 /* Element.swift in Sources */,
 				5CF3811D28AA9039002C691D /* Accelera.docc in Sources */,
+				5C18926228B00A5F004C5359 /* AcceleraImageView.swift in Sources */,
+				5C18928028B26BD7004C5359 /* HTMLParser.swift in Sources */,
+				5C18925428AFD9A6004C5359 /* AcceleraBannerViewController.swift in Sources */,
+				5CF3814428AAC3BB002C691D /* URL+.swift in Sources */,
+				5C18925828B0054A004C5359 /* AcceleraAbstractView.swift in Sources */,
+				5C18928428B27B63004C5359 /* HTMLParserError.swift in Sources */,
+				5CF3814728AAC424002C691D /* URLRequest+.swift in Sources */,
+				5CAFAC6228B8BA430028CDF0 /* UILabel+.swift in Sources */,
+				5CF3813928AAAF47002C691D /* AcceleraConfig.swift in Sources */,
+				5CF3813328AAAB08002C691D /* Accelera.swift in Sources */,
+				5C18926728B01454004C5359 /* Collection+.swift in Sources */,
+				5C18928A28B3B2D8004C5359 /* CGFloat+.swift in Sources */,
+				5CF3814B28AAC8CE002C691D /* AcceleraAPI.swift in Sources */,
+				5C18928828B3AC11004C5359 /* UIButton+.swift in Sources */,
+				5C18926528B00E82004C5359 /* String+.swift in Sources */,
+				5CEC23DC28B7A96900F0190F /* AcceleraBannerView.swift in Sources */,
+				5CF3813F28AAC0E5002C691D /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +553,7 @@
 		};
 		5CF3812D28AA903A002C691D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7CAD424FF12F9BBBCF44B37E /* Pods-Accelera.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -350,15 +565,17 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.cubesolutions.Accelera;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.cubesolutions.accelera;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -367,6 +584,7 @@
 		};
 		5CF3812E28AA903A002C691D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52776543533C321F2246A8DE /* Pods-Accelera.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -378,15 +596,17 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.cubesolutions.Accelera;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.cubesolutions.accelera;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -396,6 +616,7 @@
 		5CF3813028AA903A002C691D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BS82S4UJ9K;
@@ -412,6 +633,7 @@
 		5CF3813128AA903A002C691D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BS82S4UJ9K;

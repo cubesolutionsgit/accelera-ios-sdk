@@ -2,7 +2,7 @@
 //  Accelera.h
 //  Accelera
 //
-//  Created by Evgeny Boganov on 15.08.2022.
+//  Created by Evgeny Boganov on 11.08.2022.
 //
 
 #import <Foundation/Foundation.h>
