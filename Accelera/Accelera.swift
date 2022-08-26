@@ -35,7 +35,7 @@ public final class Accelera {
     
     public func logEvent(data: [String: Any]) {
         // TODO: cache if network is not available
-        self.api.logEvent(data: data) { [weak self] json, error in
+        self.api.logEvent(data: data) { json, error in
             if let error = error {
                 print(error.localizedDescription)
             } else if let json = json {
