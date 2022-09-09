@@ -38,6 +38,8 @@ class AcceleraBannerView: UIView {
     }
     
     override func willMove(toSuperview newSuperview: UIView?) {
+        super.willMove(toSuperview: newSuperview)
+        
         if newSuperview != nil {
             self.delegate?.onAdded()
         }
