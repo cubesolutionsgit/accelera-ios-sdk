@@ -14,6 +14,6 @@ extension Collection {
     }
     
     var elementBeforeLast: Element? {
-            return dropLast().last
+        return dropLast().last
     }
 }

@@ -22,28 +22,35 @@ extension AcceleraRenderingElement {
     }
     
     var width: CGFloat? {
-        guard let w = self.getAttribute("width")?.digits, !w.isEmpty else {
+        guard let str = self.getAttribute("width")?.digits,
+              !str.isEmpty,
+              let w = NumberFormatter().number(from: str) else {
             return nil
-
         }
-        return CGFloat(Int(w)!)
+        return CGFloat(truncating: w)
     }
 
     var height: CGFloat? {
-        guard let h = self.getAttribute("height")?.digits, !h.isEmpty else {
+        guard let str = self.getAttribute("height")?.digits,
+              !str.isEmpty,
+              let h = NumberFormatter().number(from: str) else {
             return nil
         }
-        return CGFloat(Int(h)!)
+        return CGFloat(truncating: h)
     }
     
     var align: String? {
-        let a = self.getAttribute("align")
-        return (a ?? "").isEmpty ? nil : a!
+        guard let a = self.getAttribute("align"), !a.isEmpty else {
+           return nil
+        }
+        return a
     }
     
     var href: String? {
-        let h = self.getAttribute("href")
-        return (h ?? "").isEmpty ? nil : h!
+        guard let h = self.getAttribute("href"), !h.isEmpty else {
+           return nil
+        }
+        return h
     }
     
     var margin: UIEdgeInsets? {
@@ -55,7 +62,7 @@ extension AcceleraRenderingElement {
             return UIEdgeInsets.zero
         }
 
-        let values = m.components(separatedBy: " ").map{Int($0.digits)!}
+        let values = m.components(separatedBy: " ").map{Int($0.digits) ?? 0}
 
         let top = values[safe: 0] ?? 0
         let right = values[safe: 1] ?? top
@@ -75,7 +82,7 @@ extension AcceleraRenderingElement {
             return UIEdgeInsets.zero
         }
 
-        let values = p.components(separatedBy: " ").map{Int($0.digits)!}
+        let values = p.components(separatedBy: " ").map{Int($0.digits) ?? 0}
 
         let top = values[safe: 0] ?? 0
         let right = values[safe: 1] ?? top
@@ -111,19 +118,21 @@ extension AcceleraRenderingElement {
     }
 
     var fontSize: CGFloat? {
-        guard let fs = self.getAttribute("font-size")?.digits, !fs.isEmpty else {
+        guard let str = self.getAttribute("font-size")?.digits,
+              !str.isEmpty,
+              let fs = NumberFormatter().number(from: str) else {
             return nil
-
         }
-        return CGFloat(Int(fs)!)
+        return CGFloat(truncating: fs)
     }
     
     var borderRadius: CGFloat? {
-        guard let br = self.getAttribute("border-radius")?.digits, !br.isEmpty else {
+        guard let str = self.getAttribute("border-radius")?.digits,
+              !str.isEmpty,
+              let br = NumberFormatter().number(from: str) else {
             return nil
-
         }
-        return CGFloat(Int(br)!)
+        return CGFloat(truncating: br)
     }
     
     var border: (size: CGFloat, type: String, color: UIColor)? {
