@@ -16,17 +16,19 @@ enum RequestMethod: String {
 }
 
 final class WebClient {
-    private var baseUrl: String
-    
+
     init(baseUrl: String) {
         self.baseUrl = baseUrl
     }
+    
+    private var baseUrl: String
+    private var session: URLSession = URLSession(configuration: URLSessionConfiguration.default)
     
     func load(path: String, method: RequestMethod, params: JSON, headers: [String: String] = [:], completion: @escaping (Any?, NetworkError?) -> ()) -> URLSessionDataTask? {
         
         let request = URLRequest(baseUrl: baseUrl, path: path, method: method, params: params, headers: headers)
         
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        let task = session.dataTask(with: request) { data, response, error in
             var object: Any? = nil
             if let data = data {
                 object = try? JSONSerialization.jsonObject(with: data, options: [])

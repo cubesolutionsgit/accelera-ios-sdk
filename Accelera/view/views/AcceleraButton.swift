@@ -10,18 +10,18 @@ import UIKit
 
 class AcceleraButton: AcceleraAbstractView {
     
-    init(element: AcceleraRenderingElement, action: ((String) -> Void)?, completion: @escaping () -> Void) {
-        super.init(element: element, view: UIButton())
+    init(element: AcceleraRenderingElement, action: ((String) -> Void)?) {
+        super.init(element: element, type: UIButton.self)
         self.action = action
-        
-        applyAttributes()
-        
-        completion()
     }
     
     private var action: ((String) -> Void)?
             
-    override func applyAttributes() {
+    override func prepare(completion: @escaping () -> Void) {
+        
+        defer {
+            completion()
+        }
         
         guard let button = self.view as? UIButton else {
             return
@@ -41,7 +41,7 @@ class AcceleraButton: AcceleraAbstractView {
         button.startAnimatingPressActions()
     }
         
-    override func setConstraints(parent: AcceleraAbstractView, previousSibling: AcceleraAbstractView?, last: Bool) {
+    override func render(parent: AcceleraAbstractView, previousSibling: AcceleraAbstractView?, last: Bool) {
         
         view.translatesAutoresizingMaskIntoConstraints = false
  

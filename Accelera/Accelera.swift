@@ -11,58 +11,82 @@ import UIKit
 public protocol AcceleraDelegate: AnyObject {
     func bannerViewReady(bannerView: UIView, type: AcceleraBannerType)
     func noBannerView()
-    @discardableResult
-    func bannerViewClosed() -> Bool?
-    func bannerViewAction(action: String) -> Bool?
+    @discardableResult func bannerViewClosed() -> Bool?
+    @discardableResult func bannerViewAction(action: String) -> Bool?
 }
 
 public final class Accelera {
     
     public init(config: AcceleraConfig) {
         self.config = config
-        self.api = AcceleraAPI(config: config)
-        
-        viewController.delegate = self
+        self.viewController.delegate = self
+    }
+    
+    private var config: AcceleraConfig
+    
+    private var _api: AcceleraAPI?
+    private var api: AcceleraAPI {
+        get {
+            if let api = self._api {
+                return api
+            }
+            let api = AcceleraAPI(config: self.config)
+            self._api = api
+            return api
+        }
     }
         
-    private var config: AcceleraConfig
-    private var api: AcceleraAPI
-        
-    private let queue = DispatchQueue(label: "accelera", qos: .background)
-    private var viewController = AcceleraBannerViewController()
+    private let queue = DispatchQueue(label: "ru.cubesolutions.accelera", qos: .background)
+    
+    private var _viewController: AcceleraBannerViewController?
+    private var viewController: AcceleraBannerViewController {
+        get {
+            if let vc = self._viewController {
+                return vc
+            }
+            let vc = AcceleraBannerViewController()
+            vc.delegate = self
+            self._viewController = vc
+            return vc
+        }
+    }
     
     weak public var delegate: AcceleraDelegate?
     
     public func logEvent(data: [String: Any]) {
-        // TODO: cache if network is not available
-        self.api.logEvent(data: data) { json, error in
-            if let error = error {
-                print(error.localizedDescription)
-            } else if let json = json {
-                print(json)
+        self.queue.async {
+            // TODO: cache if network is not available
+            self.api.logEvent(data: data) { [weak self] json, error in
+                self?.queue.async {
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else if let json = json {
+                        print(json)
+                    }
+                }
             }
         }
     }
     
     public func loadBanner() {
-        self.api.loadBanner() { [weak self] json, error in
-            guard let json = json, json["status"] as! Int == 1, let html = json["template"] as? String else {
-                self?.delegate?.noBannerView()
-                return
-            }
-            
-            var bannerType: AcceleraBannerType = .top
-            
-            if let data = json["data"] as? [String: Any],
-               let type = data["type"] as? String,
-               let bt = AcceleraBannerType(rawValue: type) {
-                bannerType = bt
-            }
-            
-            // all views will be created in this thread
-            // will show a warning
-            self?.queue.async {
-                self?.viewController.create(from: html, bannerType: bannerType)
+        self.queue.async {
+            self.api.loadBanner() { [weak self] json, error in
+                self?.queue.async {
+                    guard let json = json, let status = json["status"] as? Int, status == 1, let html = json["template"] as? String else {
+                        self?.delegate?.noBannerView()
+                        return
+                    }
+                    
+                    var bannerType: AcceleraBannerType = .top
+                    
+                    if let data = json["data"] as? [String: Any],
+                       let type = data["type"] as? String,
+                       let bt = AcceleraBannerType(rawValue: type) {
+                        bannerType = bt
+                    }
+                    
+                    self?.viewController.create(from: html, bannerType: bannerType)
+                }
             }
         }
     }

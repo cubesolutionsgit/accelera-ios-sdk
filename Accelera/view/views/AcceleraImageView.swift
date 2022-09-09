@@ -10,50 +10,50 @@ import UIKit
 
 class AcceleraImageView: AcceleraAbstractView {
     
-    init(element: AcceleraRenderingElement, completion: @escaping () -> Void) {
-        self.completion = completion
-        super.init(element: element, view: UIImageView())
-        applyAttributes()
+    init(element: AcceleraRenderingElement) {
+        super.init(element: element, type: UIImageView.self)
     }
-    
-    let completion: () -> Void
-    
-    override func applyAttributes() {
+        
+    override func prepare(completion: @escaping () -> Void) {
         
         defer {
-            self.completion()
+            completion()
         }
         
         guard let imageView = self.view as? UIImageView else {
             return
         }
         
-        imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         
-        if let source = element.getAttribute("src"), !source.isEmpty,
+        if let source = element.getAttribute("src"),
+           !source.isEmpty,
            let url = URL(string: source) {
             if let data = try? Data(contentsOf: url) {
                 if let image = UIImage(data: data) {
-                    imageView.image = image
+                    DispatchQueue.main.async {
+                        imageView.contentMode = .scaleAspectFill
+                        imageView.image = image
+                    }
                     
                     let imageRatio = image.size.width / image.size.height
                     
-                    let width: CGFloat? = element.width
-                    let height: CGFloat? = element.height
+                    let width = element.width
+                    let height = element.height
                     
-                    if height == nil && width != nil {
-                        view.heightAnchor.constraint(equalToConstant: width! / imageRatio).isActive = true
+                    if let w = width, height == nil {
+                        imageView.heightAnchor.constraint(equalToConstant: w / imageRatio).isActive = true
                     }
                     
-                    if (width == nil && height != nil) {
-                        view.widthAnchor.constraint(equalToConstant: height! * imageRatio).isActive = true
+                    if let h = height, width == nil {
+                        imageView.widthAnchor.constraint(equalToConstant: h * imageRatio).isActive = true
                     }
                 }
             }
         }
     }
     
-    override func setConstraints(parent: AcceleraAbstractView, previousSibling: AcceleraAbstractView?, last: Bool) {
+    override func render(parent: AcceleraAbstractView, previousSibling: AcceleraAbstractView?, last: Bool) {
               
         view.translatesAutoresizingMaskIntoConstraints = false
         

@@ -10,21 +10,38 @@ import UIKit
 
 class AcceleraAbstractView: Equatable {
     
-    init(element: AcceleraRenderingElement, view: UIView) {
+    init(element: AcceleraRenderingElement, type: UIView.Type) {
         self.element = element
-        self.view = view
+        self.type = type
     }
         
     var id = UUID()
     var element: AcceleraRenderingElement
-    var view: UIView
+    var type: UIView.Type
     var descendents = [AcceleraAbstractView]()
     
-    internal func applyAttributes() {
+    private var _view: UIView?
+    var view: UIView {
+        if let v = self._view {
+            return v
+        }
+        let v = type.init()
+        self._view = v
+        return v
+    }
         
+    func create() {
+        DispatchQueue.main.async {
+            // just to init lazily
+            let _ = self.view
+        }
     }
     
-    func setConstraints(parent: AcceleraAbstractView, previousSibling: AcceleraAbstractView?, last: Bool) {
+    func prepare(completion: @escaping () -> Void) {
+        completion()
+    }
+    
+    func render(parent: AcceleraAbstractView, previousSibling: AcceleraAbstractView?, last: Bool) {
         
     }
     

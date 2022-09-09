@@ -24,7 +24,7 @@ class AcceleraBannerViewController {
     weak var delegate: AcceleraViewDelegate?
     
     private var parsingParents = [AcceleraAbstractView]()
-    private var parsingGroup: DispatchGroup?
+    private var preparingGroup: DispatchGroup?
     private var topView: AcceleraAbstractView?
     
     deinit {
@@ -34,7 +34,7 @@ class AcceleraBannerViewController {
     func create(from html: String, bannerType: AcceleraBannerType) {
         self.bannerType = bannerType
         
-        if parsingGroup != nil {
+        if preparingGroup != nil {
             delegate?.onError("Already creating a banner. Wait for completion")
             return
         }
@@ -45,12 +45,7 @@ class AcceleraBannerViewController {
                 self?.delegate?.onError(error)
                 break
             case .success(let doc):
-                
-                self?.parsingGroup = DispatchGroup()
                 self?.parseElement(doc)
-                self?.parsingGroup?.wait()
-                self?.parsingGroup = nil
-                
                 self?.render()
                 
                 if let view = self?.view {
@@ -58,6 +53,7 @@ class AcceleraBannerViewController {
                 } else {
                     self?.delegate?.onError("View was not created properly")
                 }
+                break
             }
         }
     }
@@ -67,7 +63,7 @@ class AcceleraBannerViewController {
             view.removeFromSuperview()
         }
         self.view = nil
-        self.parsingGroup = nil
+        self.preparingGroup = nil
         self.topView = nil
         self.parsingParents.removeAll()
         self.bannerType = .center
@@ -75,11 +71,8 @@ class AcceleraBannerViewController {
     
     @discardableResult
     private func parseElement(_ element: AcceleraRenderingElement) -> AcceleraAbstractView? {
-        
-        self.parsingGroup?.enter()
-        let view = self.createView(element) { [weak self] in
-            self?.parsingGroup?.leave()
-        }
+                
+        let view = self.createView(element)
         
         if let view = view {
             if let parent = self.parsingParents.last {
@@ -114,55 +107,72 @@ class AcceleraBannerViewController {
         
         superview.addMainAcceleraView(topView)
 
+        // first we need to prepare all views (wait for images to load, set all attributes etc..)
+        self.preparingGroup = DispatchGroup()
+        topView.descendents.forEach{ child in
+            self.prepareView(child)
+        }
+        self.preparingGroup?.wait()
+        self.preparingGroup = nil
+        
+        // then we render views
         topView.descendents.forEach{ child in
             self.renderView(child, parent: topView)
+        }
+    }
+    
+    private func prepareView(_ view:AcceleraAbstractView) {
+        self.preparingGroup?.enter()
+        view.prepare { [weak self] in
+            self?.preparingGroup?.leave()
+        }
+        view.descendents.forEach{ child in
+            self.prepareView(child)
         }
     }
     
     private func renderView(_ view: AcceleraAbstractView, parent: AcceleraAbstractView) {
         parent.view.addSubview(view.view)
         
-        view.setConstraints(parent: parent, previousSibling: parent.descendents.before(view), last: parent.descendents.last == view)
+        view.render(parent: parent, previousSibling: parent.descendents.before(view), last: parent.descendents.last == view)
         
         view.descendents.forEach{ child in
             self.renderView(child, parent: view)
         }
     }
     
-    private func createView(_ element: AcceleraRenderingElement, completion: @escaping () -> Void) -> AcceleraAbstractView? {
+    private func createView(_ element: AcceleraRenderingElement) -> AcceleraAbstractView? {
         
         var view: AcceleraAbstractView?
         
         switch element.name {
         case "re-body":
-            view = AcceleraBlock(element: element, completion: completion)
+            view = AcceleraBlock(element: element)
             break
         case "re-main":
-            view = AcceleraBlock(element: element, completion: completion)
+            view = AcceleraBlock(element: element)
             break
         case "re-block":
-            view = AcceleraBlock(element: element, completion: completion)
+            view = AcceleraBlock(element: element)
             break
         case "re-heading":
-            view = AcceleraLabel(element: element, completion: completion)
+            view = AcceleraLabel(element: element)
             break
         case "re-text":
-            view = AcceleraLabel(element: element, completion: completion)
+            view = AcceleraLabel(element: element)
             break
         case "re-image":
-            view = AcceleraImageView(element: element, completion: completion)
+            view = AcceleraImageView(element: element)
             break
         case "re-button":
-            view = AcceleraButton(element: element, action: { [weak self] action in  self?.delegate?.onAction(action)}) {
-                completion()
-            }
+            view = AcceleraButton(element: element, action: { [weak self] action in  self?.delegate?.onAction(action)})
             break
         default:
             break
         }
         
-        if view == nil {
-            completion()
+        if let view = view {
+            view.create()
         }
         
         return view

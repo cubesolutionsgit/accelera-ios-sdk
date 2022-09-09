@@ -10,13 +10,16 @@ import UIKit
 
 class AcceleraBlock: AcceleraAbstractView {
     
-    init(element: AcceleraRenderingElement, completion: @escaping () -> Void) {
-        super.init(element: element, view: UIView())
-        applyAttributes()
-        completion()
+    init(element: AcceleraRenderingElement) {
+        super.init(element: element, type: UIView.self)
     }
         
-    override func applyAttributes() {
+    override func prepare(completion: @escaping () -> Void) {
+        
+        defer {
+            completion()
+        }
+        
         if let bg = element.backgroundColor {
             self.view.backgroundColor = bg
         }
@@ -28,7 +31,7 @@ class AcceleraBlock: AcceleraAbstractView {
         }
     }
     
-    override func setConstraints(parent: AcceleraAbstractView, previousSibling: AcceleraAbstractView?, last: Bool) {
+    override func render(parent: AcceleraAbstractView, previousSibling: AcceleraAbstractView?, last: Bool) {
         
         view.translatesAutoresizingMaskIntoConstraints = false
         

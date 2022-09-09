@@ -23,6 +23,7 @@
 		5C18928628B2B697004C5359 /* AcceleraRenderingElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18928528B2B697004C5359 /* AcceleraRenderingElement.swift */; };
 		5C18928828B3AC11004C5359 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18928728B3AC11004C5359 /* UIButton+.swift */; };
 		5C18928A28B3B2D8004C5359 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18928928B3B2D8004C5359 /* CGFloat+.swift */; };
+		5C2175C028CB3E4C002C552F /* Thread+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2175BF28CB3E4C002C552F /* Thread+.swift */; };
 		5CAFAC6228B8BA430028CDF0 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAFAC6128B8BA430028CDF0 /* UILabel+.swift */; };
 		5CAFAC6628B8C4140028CDF0 /* Accelera.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 5CAFAC6528B8C4140028CDF0 /* Accelera.podspec */; };
 		5CAFAC6828B8C5700028CDF0 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 5CAFAC6728B8C5700028CDF0 /* LICENSE */; };
@@ -70,6 +71,7 @@
 		5C18928528B2B697004C5359 /* AcceleraRenderingElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceleraRenderingElement.swift; sourceTree = "<group>"; };
 		5C18928728B3AC11004C5359 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		5C18928928B3B2D8004C5359 /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
+		5C2175BF28CB3E4C002C552F /* Thread+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Thread+.swift"; sourceTree = "<group>"; };
 		5CAFAC6128B8BA430028CDF0 /* UILabel+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		5CAFAC6528B8C4140028CDF0 /* Accelera.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Accelera.podspec; sourceTree = "<group>"; };
 		5CAFAC6728B8C5700028CDF0 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 		5C18926328B00E6D004C5359 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				5C2175BF28CB3E4C002C552F /* Thread+.swift */,
 				5CAFAC6128B8BA430028CDF0 /* UILabel+.swift */,
 				5C18926428B00E82004C5359 /* String+.swift */,
 				5CEC23D928B7941F00F0190F /* BidirectionalCollection+.swift */,
@@ -387,6 +390,7 @@
 				5CEC23D628B6291300F0190F /* AcceleraBlock.swift in Sources */,
 				5C18928628B2B697004C5359 /* AcceleraRenderingElement.swift in Sources */,
 				5C18926B28B022BA004C5359 /* UIFont+.swift in Sources */,
+				5C2175C028CB3E4C002C552F /* Thread+.swift in Sources */,
 				5C18926928B01C95004C5359 /* UIColor+.swift in Sources */,
 				5C18925E28B00A1A004C5359 /* AcceleraButton.swift in Sources */,
 				5C18926028B00A3F004C5359 /* AcceleraLabel.swift in Sources */,

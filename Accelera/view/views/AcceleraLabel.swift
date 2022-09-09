@@ -9,15 +9,15 @@ import Foundation
 import UIKit
 
 class AcceleraLabel: AcceleraAbstractView {
-    init(element: AcceleraRenderingElement, completion: @escaping () -> Void) {
-        super.init(element: element, view: UILabel())
-        
-        applyAttributes()
-        
-        completion()
+    init(element: AcceleraRenderingElement) {
+        super.init(element: element, type: UILabel.self)
     }
         
-    override func applyAttributes() {
+    override func prepare(completion: @escaping () -> Void) {
+        
+        defer {
+            completion()
+        }
         
         guard let label = self.view as? UILabel else {
             return
@@ -65,7 +65,7 @@ class AcceleraLabel: AcceleraAbstractView {
         label.setLineSpacing(lineHeightMultiple: 1.5)
     }
     
-    override func setConstraints(parent: AcceleraAbstractView, previousSibling: AcceleraAbstractView?, last: Bool) {
+    override func render(parent: AcceleraAbstractView, previousSibling: AcceleraAbstractView?, last: Bool) {
         
         guard let label = self.view as? UILabel else {
             return
