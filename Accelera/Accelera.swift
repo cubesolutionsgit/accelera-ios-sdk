@@ -8,15 +8,44 @@
 import Foundation
 import UIKit
 
+
+/// Delegate that informs about banner events
 public protocol AcceleraDelegate: AnyObject {
-    func bannerViewReady(bannerView: UIView, type: AcceleraBannerType)
+    /**
+     When view is ready delegate calls this method
+     - Parameters:
+         - view: UIView that was prepared by the library
+         - type: Type of the banner. See ``AcceleraBannerType``
+     */
+    func bannerViewReady(view: UIView, type: AcceleraBannerType)
+    
+    /**
+     If banner doesn't exist then library will call this delegate method
+     */
     func noBannerView()
+    
+    /**
+     Called when close button was pressed
+     - Returns: Optional boolean. If true library will remove banner from its superview automatically
+     */
     @discardableResult func bannerViewClosed() -> Bool?
+    /**
+     Called when close button was pressed
+     - Parameters:
+          - action: string set as button action
+     - Returns: Optional boolean. If true library will remove banner from its superview automatically
+     */
     @discardableResult func bannerViewAction(action: String) -> Bool?
 }
 
+/// Main library class
 public final class Accelera {
     
+    /**
+     Initializes library
+     - Parameters:
+         - config: Library configuration. See ``AcceleraConfig``
+     */
     public init(config: AcceleraConfig) {
         self.config = config
         self.viewController.delegate = self
@@ -35,7 +64,7 @@ public final class Accelera {
             return api
         }
     }
-        
+    
     private let queue = DispatchQueue(label: "ru.cubesolutions.accelera", qos: .background)
     
     private var _viewController: AcceleraBannerViewController?
@@ -51,23 +80,41 @@ public final class Accelera {
         }
     }
     
+    /**
+     Sets delegate for library events. See ``AcceleraDelegate``
+     */
     weak public var delegate: AcceleraDelegate?
     
-    public func logEvent(data: [String: Any]) {
+    /**
+     Logs event for user activity
+     - Parameters:
+         - data: Valid JSON string that describes the event
+     */
+    public func logEvent(string: String) {
         self.queue.async {
             // TODO: cache if network is not available
-            self.api.logEvent(data: data) { [weak self] json, error in
-                self?.queue.async {
-                    if let error = error {
-                        print(error.localizedDescription)
-                    } else if let json = json {
-                        print(json)
+            if let data = string.data(using: .utf8),
+               let object = try? JSONSerialization.jsonObject(with: data, options: []),
+               let json = object as? JSON {
+                self.api.logEvent(data: json) { [weak self] json, error in
+                    self?.queue.async {
+                        if let error = error {
+                            print(error.localizedDescription)
+                        } else if let json = json {
+                            print(json)
+                        }
                     }
                 }
+            } else {
+                print("bad json sent to log event")
             }
         }
     }
     
+    /**
+     Asks if any type of banner for current user exists
+     will call delegate in any case. See ``AcceleraDelegate``
+     */
     public func loadBanner() {
         self.queue.async {
             self.api.loadBanner() { [weak self] json, error in
@@ -91,12 +138,17 @@ public final class Accelera {
         }
     }
     
-    public func getBannerView() -> (view: UIView, bannerType: AcceleraBannerType)? {
+    /**
+     Will return banner view if it was loaded previously.
+     - Returns: Tuple with **view** as banner view and **type** as its type.
+     This is just a convenience method. Need to call ``loadBanner()`` first
+     */
+    public func getBannerView() -> (view: UIView, type: AcceleraBannerType)? {
         guard let view = viewController.view else {
             return nil
         }
         
-        return (view: view, bannerType: viewController.bannerType)
+        return (view: view, type: viewController.bannerType)
     }
 }
 
@@ -107,7 +159,7 @@ extension Accelera: AcceleraViewDelegate {
     
     func onReady(_ view: UIView, type: AcceleraBannerType) {
         DispatchQueue.main.async {
-            self.delegate?.bannerViewReady(bannerView: view, type: type)
+            self.delegate?.bannerViewReady(view: view, type: type)
         }
     }
     
@@ -121,11 +173,11 @@ extension Accelera: AcceleraViewDelegate {
     }
     
     func onAdded() {
-        self.logEvent(data: ["event": "shown"])
+        self.logEvent(string: "{\"event\": \"shown\"}")
     }
     
     func onClose() {
-        self.logEvent(data: ["event": "closed"])
+        self.logEvent(string: "{\"event\": \"closed\"}")
         let closeAutomatically = self.delegate?.bannerViewClosed()
         if closeAutomatically == true {
             viewController.view?.removeFromSuperview()
