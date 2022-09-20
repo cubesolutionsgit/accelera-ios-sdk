@@ -1,0 +1,16 @@
+PODS:
+  - Accelera (0.1.0)
+
+DEPENDENCIES:
+  - Accelera (from `../`)
+
+EXTERNAL SOURCES:
+  Accelera:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Accelera: 9650a43048d449290f026ee07c3f7971ec050e74
+
+PODFILE CHECKSUM: a030dd3ffaf53e2613e47ac0292244760f51dfdd
+
+COCOAPODS: 1.11.3

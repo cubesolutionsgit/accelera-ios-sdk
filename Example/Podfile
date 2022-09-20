@@ -1,0 +1,8 @@
+platform :ios, '12.0'
+
+target 'Example' do
+  use_frameworks!
+
+  # Pods for Testing2
+  pod 'Accelera', :path => '../'
+end
