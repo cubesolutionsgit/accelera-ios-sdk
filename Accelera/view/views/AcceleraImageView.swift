@@ -24,6 +24,13 @@ class AcceleraImageView: AcceleraAbstractView {
             return
         }
         
+        self.view.layer.cornerRadius = element.borderRadius ?? 0
+        
+        if let border = element.border {
+            self.view.layer.borderWidth = border.size
+            self.view.layer.borderColor = border.color.cgColor
+        }
+        
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         if let source = element.getAttribute("src"),
