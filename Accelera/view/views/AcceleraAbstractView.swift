@@ -31,10 +31,8 @@ class AcceleraAbstractView: Equatable {
     }
         
     func create() {
-        DispatchQueue.main.async {
-            // just to init lazily
-            let _ = self.view
-        }
+        // just to init lazily
+        let _ = self.view
     }
     
     func prepare(completion: @escaping () -> Void) {

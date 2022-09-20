@@ -15,10 +15,15 @@ class AcceleraBlock: AcceleraAbstractView {
     }
         
     override func prepare(completion: @escaping () -> Void) {
+        completion()
+    }
+    
+    override func render(parent: AcceleraAbstractView, previousSibling: AcceleraAbstractView?, last: Bool) {
         
-        defer {
-            completion()
-        }
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        let parentPadding = parent.element.padding ?? UIEdgeInsets.zero
+        let selfMargin = self.element.margin ?? UIEdgeInsets.zero
         
         if let bg = element.backgroundColor {
             self.view.backgroundColor = bg
@@ -29,14 +34,6 @@ class AcceleraBlock: AcceleraAbstractView {
             self.view.layer.borderWidth = border.size
             self.view.layer.borderColor = border.color.cgColor
         }
-    }
-    
-    override func render(parent: AcceleraAbstractView, previousSibling: AcceleraAbstractView?, last: Bool) {
-        
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        let parentPadding = parent.element.padding ?? UIEdgeInsets.zero
-        let selfMargin = self.element.margin ?? UIEdgeInsets.zero
         
         if let width = element.width {
             view.widthAnchor.constraint(equalToConstant: width).isActive = true

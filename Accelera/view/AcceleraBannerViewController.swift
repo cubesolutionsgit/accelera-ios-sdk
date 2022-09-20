@@ -17,7 +17,6 @@ protocol AcceleraViewDelegate: AnyObject {
 }
 
 class AcceleraBannerViewController {
-    
     var view: AcceleraBannerView?
     var bannerType: AcceleraBannerType = .center
     
@@ -31,33 +30,85 @@ class AcceleraBannerViewController {
         clear()
     }
     
-    func create(from html: String, bannerType: AcceleraBannerType) {
-        self.bannerType = bannerType
-        
-        if preparingGroup != nil {
-            delegate?.onError("Already creating a banner. Wait for completion")
-            return
-        }
-        
+    // first we need to parse html to rendering elements
+    // must be run in background thread
+    func parseHTML(html: String, completion: @escaping () -> Void) {
         HTMLParser().parse(html: html) { [weak self] result in
             switch result {
             case .failure(let error):
                 self?.delegate?.onError(error)
                 break
-            case .success(let doc):
-                self?.parseElement(doc)
-                self?.render()
-                
-                if let view = self?.view {
-                    self?.delegate?.onReady(view, type: bannerType)
-                } else {
-                    self?.delegate?.onError("View was not created properly")
-                }
+            case .success(let document):
+                self?.parseElement(document)
                 break
             }
+            completion()
         }
     }
     
+    // then we have to create UI views for rendering elements
+    // must be run in main thread
+    func createViews(completion: @escaping () -> Void) {
+        defer {
+            completion()
+        }
+        
+        guard let topView = self.topView else {
+            self.delegate?.onError("View was not created properly")
+            return
+        }
+        
+        self.createView(topView)
+    }
+    
+    // we prepare elements here. Mainly for loading images
+    // must be run in background thread
+    func prepareViews(completion: @escaping () -> Void) {
+        
+        defer {
+            completion()
+        }
+        
+        guard let topView = self.topView else {
+            self.delegate?.onError("View was not prepared properly")
+            return
+        }
+        self.preparingGroup = DispatchGroup()
+        self.prepareView(topView)
+        self.preparingGroup?.wait()
+        
+        self.preparingGroup = nil
+    }
+    
+    // finally we render everything. Adding attributes and constraints
+    // must be run in main thread
+    func renderViews(type: AcceleraBannerType, completion: @escaping () -> Void) {
+        
+        defer {
+            if let view = self.view {
+                self.delegate?.onReady(view, type: bannerType)
+            } else {
+                self.delegate?.onError("View was not rendered properly")
+            }
+
+            completion()
+        }
+        
+        guard let topView = self.topView else {
+            return
+        }
+        
+        self.bannerType = type
+        let superview = AcceleraBannerView(topView: topView, type: type)
+        self.view = superview
+        superview.delegate = self
+        
+        // TODO: think about topView background for non fullscreen types
+        topView.descendents.forEach{ child in
+            self.renderView(child, parent: topView)
+        }
+    }
+        
     func clear() {
         if let view = self.view {
             view.removeFromSuperview()
@@ -65,14 +116,15 @@ class AcceleraBannerViewController {
         self.view = nil
         self.preparingGroup = nil
         self.topView = nil
-        self.parsingParents.removeAll()
         self.bannerType = .center
+        self.parsingParents.removeAll()
     }
     
+    // private methods for parsing, preparing and rendering
     @discardableResult
     private func parseElement(_ element: AcceleraRenderingElement) -> AcceleraAbstractView? {
                 
-        let view = self.createView(element)
+        let view = self.getViewFromElement(element)
         
         if let view = view {
             if let parent = self.parsingParents.last {
@@ -95,29 +147,16 @@ class AcceleraBannerViewController {
         
         return view
     }
-    
-    private func render() {
-        guard let topView = self.topView else {
-            return
-        }
         
-        let superview = AcceleraBannerView(topView: topView, type: self.bannerType)
-        self.view = superview
-        superview.delegate = self
-
-        // first we need to prepare all views (wait for images to load, set all attributes etc..)
-        self.preparingGroup = DispatchGroup()
-        self.prepareView(topView)
-        self.preparingGroup?.wait()
-        self.preparingGroup = nil
+    private func createView(_ view: AcceleraAbstractView) {
+        view.create()
         
-        // then we render all views but re-body
-        topView.descendents.forEach{ child in
-            self.renderView(child, parent: topView)
+        view.descendents.forEach{ child in
+            self.createView(child)
         }
     }
     
-    private func prepareView(_ view:AcceleraAbstractView) {
+    private func prepareView(_ view: AcceleraAbstractView) {
         self.preparingGroup?.enter()
         view.prepare { [weak self] in
             self?.preparingGroup?.leave()
@@ -126,18 +165,16 @@ class AcceleraBannerViewController {
             self.prepareView(child)
         }
     }
-    
+        
     private func renderView(_ view: AcceleraAbstractView, parent: AcceleraAbstractView) {
         parent.view.addSubview(view.view)
-        
         view.render(parent: parent, previousSibling: parent.descendents.before(view), last: parent.descendents.last == view)
-        
         view.descendents.forEach{ child in
             self.renderView(child, parent: view)
         }
     }
     
-    private func createView(_ element: AcceleraRenderingElement) -> AcceleraAbstractView? {
+    private func getViewFromElement(_ element: AcceleraRenderingElement) -> AcceleraAbstractView? {
         
         var view: AcceleraAbstractView?
         
@@ -169,11 +206,7 @@ class AcceleraBannerViewController {
         default:
             break
         }
-        
-        if let view = view {
-            view.create()
-        }
-        
+             
         return view
     }
 }

@@ -132,7 +132,24 @@ public final class Accelera {
                         bannerType = bt
                     }
                     
-                    self?.viewController.create(from: html, bannerType: bannerType)
+                    // some crazy code for switching between threads
+                    self?.queue.async {
+                        self?.viewController.parseHTML(html: html, completion: {
+                            DispatchQueue.main.async {
+                                self?.viewController.createViews {
+                                    self?.queue.async {
+                                        self?.viewController.prepareViews {
+                                            DispatchQueue.main.async {
+                                                self?.viewController.renderViews(type: bannerType, completion: {
+                                                    
+                                                })
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        })
+                    }
                 }
             }
         }

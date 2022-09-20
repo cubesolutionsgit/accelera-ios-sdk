@@ -14,16 +14,15 @@ class AcceleraLabel: AcceleraAbstractView {
     }
         
     override func prepare(completion: @escaping () -> Void) {
+        completion()
+    }
+    
+    override func render(parent: AcceleraAbstractView, previousSibling: AcceleraAbstractView?, last: Bool) {
         
-        defer {
-            completion()
-        }
+        // attributes
         
-        guard let label = self.view as? UILabel else {
-            return
-        }
-        
-        guard var text = element.text else {
+        guard let label = self.view as? UILabel,
+        var text = element.text else {
             return
         }
         
@@ -63,13 +62,6 @@ class AcceleraLabel: AcceleraAbstractView {
 
         label.text = text.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
         label.setLineSpacing(lineHeightMultiple: 1.5)
-    }
-    
-    override func render(parent: AcceleraAbstractView, previousSibling: AcceleraAbstractView?, last: Bool) {
-        
-        guard let label = self.view as? UILabel else {
-            return
-        }
         
         if let align = element.align ?? parent.element.align {
             switch align {
@@ -86,45 +78,47 @@ class AcceleraLabel: AcceleraAbstractView {
             }
         }
         
-        view.translatesAutoresizingMaskIntoConstraints = false
+        // constraints
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
         
         let parentPadding = parent.element.padding ?? UIEdgeInsets.zero
         let selfMargin = self.element.margin ?? UIEdgeInsets.zero
         
         if let width = element.width {
-            view.widthAnchor.constraint(equalToConstant: width).isActive = true
+            label.widthAnchor.constraint(equalToConstant: width).isActive = true
             
             switch parent.element.align {
             case "center":
-                view.centerXAnchor.constraint(equalTo: parent.view.centerXAnchor).isActive = true
+                label.centerXAnchor.constraint(equalTo: parent.view.centerXAnchor).isActive = true
                 break
             case "right":
-                view.trailingAnchor.constraint(equalTo: parent.view.trailingAnchor, constant: -(parentPadding.right + selfMargin.right)).isActive = true
+                label.trailingAnchor.constraint(equalTo: parent.view.trailingAnchor, constant: -(parentPadding.right + selfMargin.right)).isActive = true
                 break
             default:
-                view.leadingAnchor.constraint(equalTo: parent.view.leadingAnchor, constant: parentPadding.left + selfMargin.left).isActive = true
+                label.leadingAnchor.constraint(equalTo: parent.view.leadingAnchor, constant: parentPadding.left + selfMargin.left).isActive = true
                 break
             }
         } else {
-            view.leadingAnchor.constraint(equalTo: parent.view.leadingAnchor, constant: parentPadding.left + selfMargin.left).isActive = true
-            view.trailingAnchor.constraint(equalTo: parent.view.trailingAnchor, constant: -(parentPadding.right + selfMargin.right)).isActive = true
+            label.leadingAnchor.constraint(equalTo: parent.view.leadingAnchor, constant: parentPadding.left + selfMargin.left).isActive = true
+            label.trailingAnchor.constraint(equalTo: parent.view.trailingAnchor, constant: -(parentPadding.right + selfMargin.right)).isActive = true
         }
         
         if let height = element.height {
-            view.heightAnchor.constraint(equalToConstant: height).isActive = true
+            label.heightAnchor.constraint(equalToConstant: height).isActive = true
         }
         
         
         if let sibling = previousSibling {
             let siblingMargin = sibling.element.margin ?? UIEdgeInsets.zero
             
-            view.topAnchor.constraint(equalTo: sibling.view.bottomAnchor, constant: siblingMargin.bottom + selfMargin.top).isActive = true
+            label.topAnchor.constraint(equalTo: sibling.view.bottomAnchor, constant: siblingMargin.bottom + selfMargin.top).isActive = true
         } else {
-            view.topAnchor.constraint(equalTo: parent.view.topAnchor, constant: parentPadding.top + selfMargin.top).isActive = true
+            label.topAnchor.constraint(equalTo: parent.view.topAnchor, constant: parentPadding.top + selfMargin.top).isActive = true
         }
         
         if last {
-            view.bottomAnchor.constraint(equalTo: parent.view.bottomAnchor, constant: -(selfMargin.bottom + parentPadding.bottom)).isActive = true
+            label.bottomAnchor.constraint(equalTo: parent.view.bottomAnchor, constant: -(selfMargin.bottom + parentPadding.bottom)).isActive = true
         }
     }
 }

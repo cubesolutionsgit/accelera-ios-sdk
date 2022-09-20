@@ -18,14 +18,17 @@ class AcceleraButton: AcceleraAbstractView {
     private var action: ((String?) -> Void)?
             
     override func prepare(completion: @escaping () -> Void) {
+        completion()
+    }
         
-        defer {
-            completion()
-        }
+    override func render(parent: AcceleraAbstractView, previousSibling: AcceleraAbstractView?, last: Bool) {
         
         guard let button = self.view as? UIButton else {
             return
         }
+        
+        // attributes
+        
         button.clipsToBounds = true
         button.setTitle(element.text, for: .normal)
         button.setTitleColor(element.color, for: .normal)
@@ -45,47 +48,46 @@ class AcceleraButton: AcceleraAbstractView {
         button.titleLabel?.font = button.titleLabel?.font.withSize(fontSize)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         button.startAnimatingPressActions()
-    }
         
-    override func render(parent: AcceleraAbstractView, previousSibling: AcceleraAbstractView?, last: Bool) {
+        // constraints
         
-        view.translatesAutoresizingMaskIntoConstraints = false
+        button.translatesAutoresizingMaskIntoConstraints = false
  
         let parentPadding = parent.element.padding ?? UIEdgeInsets.zero
         let selfMargin = self.element.margin ?? UIEdgeInsets.zero
         
         if let width = element.width {
-            view.widthAnchor.constraint(equalToConstant: width).isActive = true
+            button.widthAnchor.constraint(equalToConstant: width).isActive = true
         } else {
-            view.widthAnchor.constraint(lessThanOrEqualTo: parent.view.widthAnchor).isActive = true
+            button.widthAnchor.constraint(lessThanOrEqualTo: parent.view.widthAnchor).isActive = true
         }
         
         switch parent.element.align {
         case "center":
-            view.centerXAnchor.constraint(equalTo: parent.view.centerXAnchor).isActive = true
+            button.centerXAnchor.constraint(equalTo: parent.view.centerXAnchor).isActive = true
             break
         case "right":
-            view.trailingAnchor.constraint(equalTo: parent.view.trailingAnchor, constant: -(parentPadding.right + selfMargin.right)).isActive = true
+            button.trailingAnchor.constraint(equalTo: parent.view.trailingAnchor, constant: -(parentPadding.right + selfMargin.right)).isActive = true
             break
         default:
-            view.leadingAnchor.constraint(equalTo: parent.view.leadingAnchor, constant: parentPadding.left + selfMargin.left).isActive = true
+            button.leadingAnchor.constraint(equalTo: parent.view.leadingAnchor, constant: parentPadding.left + selfMargin.left).isActive = true
             break
         }
         
         if let height = element.height {
-            view.heightAnchor.constraint(equalToConstant: height).isActive = true
+            button.heightAnchor.constraint(equalToConstant: height).isActive = true
         }
         
         
         if let sibling = previousSibling {
             let siblingMargin = sibling.element.margin ?? UIEdgeInsets.zero
-            view.topAnchor.constraint(equalTo: sibling.view.bottomAnchor, constant: siblingMargin.bottom + selfMargin.top).isActive = true
+            button.topAnchor.constraint(equalTo: sibling.view.bottomAnchor, constant: siblingMargin.bottom + selfMargin.top).isActive = true
         } else {
-            view.topAnchor.constraint(equalTo: parent.view.topAnchor, constant: parentPadding.top + selfMargin.top).isActive = true
+            button.topAnchor.constraint(equalTo: parent.view.topAnchor, constant: parentPadding.top + selfMargin.top).isActive = true
         }
         
         if last {
-            view.bottomAnchor.constraint(equalTo: parent.view.bottomAnchor, constant: -(selfMargin.bottom + parentPadding.bottom)).isActive = true
+            button.bottomAnchor.constraint(equalTo: parent.view.bottomAnchor, constant: -(selfMargin.bottom + parentPadding.bottom)).isActive = true
         }
     }
     
