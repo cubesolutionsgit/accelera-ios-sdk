@@ -32,10 +32,10 @@ public protocol AcceleraDelegate: AnyObject {
     /**
      Called when close button was pressed
      - Parameters:
-          - action: string set as button action
+          - action: optional string set as button action
      - Returns: Optional boolean. If true library will remove banner from its superview automatically
      */
-    @discardableResult func bannerViewAction(action: String) -> Bool?
+    @discardableResult func bannerViewAction(action: String?) -> Bool?
 }
 
 /// Main library class
@@ -163,13 +163,12 @@ extension Accelera: AcceleraViewDelegate {
         }
     }
     
-    func onAction(_ action: String) {
+    func onAction(_ action: String?) {
         let closeAutomatically = self.delegate?.bannerViewAction(action: action)
         if closeAutomatically == true {
             viewController.view?.removeFromSuperview()
+            viewController.clear()
         }
-        
-        viewController.clear()
     }
     
     func onAdded() {
@@ -181,9 +180,10 @@ extension Accelera: AcceleraViewDelegate {
         let closeAutomatically = self.delegate?.bannerViewClosed()
         if closeAutomatically == true {
             viewController.view?.removeFromSuperview()
+            viewController.clear()
         }
         
-        viewController.clear()
+        
     }
 }
 

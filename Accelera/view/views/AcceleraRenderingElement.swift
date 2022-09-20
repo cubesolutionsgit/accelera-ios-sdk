@@ -10,7 +10,7 @@ import UIKit
 
 protocol AcceleraRenderingElement {
     var name: String { get }
-    var attributes: [String: String] { get }
+    var attributes: [String: String] { get set }
     var descendents: [AcceleraRenderingElement] { get }
     var text: String? { get }
 }
@@ -19,6 +19,10 @@ extension AcceleraRenderingElement {
         
     func getAttribute(_ name: String) -> String? {
         return attributes[name]
+    }
+    
+    mutating func setAttribute(_ name: String, value: String) {
+        attributes[name] = value
     }
     
     var width: CGFloat? {

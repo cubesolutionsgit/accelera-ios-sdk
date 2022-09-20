@@ -12,7 +12,7 @@ protocol AcceleraViewDelegate: AnyObject {
     func onReady(_ view: UIView, type: AcceleraBannerType)
     func onAdded()
     func onError(_ error: Error)
-    func onAction(_ action: String)
+    func onAction(_ action: String?)
     func onClose()
 }
 
@@ -101,21 +101,17 @@ class AcceleraBannerViewController {
             return
         }
         
-        let superview = AcceleraBannerView()
+        let superview = AcceleraBannerView(topView: topView, type: self.bannerType)
         self.view = superview
         superview.delegate = self
-        
-        superview.addMainAcceleraView(topView)
 
         // first we need to prepare all views (wait for images to load, set all attributes etc..)
         self.preparingGroup = DispatchGroup()
-        topView.descendents.forEach{ child in
-            self.prepareView(child)
-        }
+        self.prepareView(topView)
         self.preparingGroup?.wait()
         self.preparingGroup = nil
         
-        // then we render views
+        // then we render all views but re-body
         topView.descendents.forEach{ child in
             self.renderView(child, parent: topView)
         }
@@ -154,6 +150,9 @@ class AcceleraBannerViewController {
             break
         case "re-block":
             view = AcceleraBlock(element: element)
+            break
+        case "re-spacer":
+            view = AcceleraSpacer(element: element)
             break
         case "re-heading":
             view = AcceleraLabel(element: element)

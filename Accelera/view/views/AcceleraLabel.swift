@@ -32,7 +32,7 @@ class AcceleraLabel: AcceleraAbstractView {
         label.textColor = element.color
         label.lineBreakMode = .byWordWrapping
         
-        var fontSize: CGFloat = 15
+        var fontSize: CGFloat = 16
         
         if let level = element.level {
             switch level {
@@ -71,7 +71,7 @@ class AcceleraLabel: AcceleraAbstractView {
             return
         }
         
-        if let align = parent.element.align {
+        if let align = element.align ?? parent.element.align {
             switch align {
             case "left":
                 label.textAlignment = .left

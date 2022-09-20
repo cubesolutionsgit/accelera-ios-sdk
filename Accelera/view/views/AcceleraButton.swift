@@ -10,12 +10,12 @@ import UIKit
 
 class AcceleraButton: AcceleraAbstractView {
     
-    init(element: AcceleraRenderingElement, action: ((String) -> Void)?) {
+    init(element: AcceleraRenderingElement, action: ((String?) -> Void)?) {
         super.init(element: element, type: UIButton.self)
         self.action = action
     }
     
-    private var action: ((String) -> Void)?
+    private var action: ((String?) -> Void)?
             
     override func prepare(completion: @escaping () -> Void) {
         
@@ -32,10 +32,16 @@ class AcceleraButton: AcceleraAbstractView {
         button.titleLabel?.lineBreakMode = .byWordWrapping
         let padding = element.padding ?? UIEdgeInsets(top: 14, left: 40, bottom: 14, right: 40)
         button.contentEdgeInsets = padding
-        let fontSize = element.fontSize ?? 15
+        let fontSize = element.fontSize ?? 18
+        
         let height = button.contentEdgeInsets.top + button.contentEdgeInsets.bottom + fontSize
-        button.layer.cornerRadius = height / 2 > 24 ? 24 : height / 2
+        
+        button.layer.cornerRadius = element.borderRadius ?? (height / 2 > 24 ? 24 : height / 2)
         button.backgroundColor = element.backgroundColor ?? UIColor(hex: "#0091ff")
+        if let border = element.border {
+            button.layer.borderWidth = border.size
+            button.layer.borderColor = border.color.cgColor
+        }
         button.titleLabel?.font = button.titleLabel?.font.withSize(fontSize)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         button.startAnimatingPressActions()
@@ -84,8 +90,8 @@ class AcceleraButton: AcceleraAbstractView {
     }
     
     @objc func buttonAction() {
-        if let href = element.href, let action = self.action {
-            action(href)
+        if let action = self.action {
+            action(element.href)
         }
     }
 }
