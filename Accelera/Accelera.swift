@@ -30,7 +30,7 @@ public protocol AcceleraDelegate: AnyObject {
      */
     @discardableResult func bannerViewClosed() -> Bool?
     /**
-     Called when close button was pressed
+     Called when any action button was pressed
      - Parameters:
           - action: optional string set as button action
      - Returns: Optional boolean. If true library will remove banner from its superview automatically
@@ -113,7 +113,7 @@ public final class Accelera {
     
     /**
      Asks if any type of banner for current user exists
-     will call delegate in any case. See ``AcceleraDelegate``
+     will call on of the delegate methods in any case. See ``AcceleraDelegate``
      */
     public func loadBanner() {
         self.queue.async {
@@ -134,21 +134,21 @@ public final class Accelera {
                     
                     // some crazy code for switching between threads
                     self?.queue.async {
-                        self?.viewController.parseHTML(html: html, completion: {
+                        self?.viewController.parseHTML(html: html) {
                             DispatchQueue.main.async {
                                 self?.viewController.createViews {
                                     self?.queue.async {
                                         self?.viewController.prepareViews {
                                             DispatchQueue.main.async {
-                                                self?.viewController.renderViews(type: bannerType, completion: {
+                                                self?.viewController.renderViews(type: bannerType) {
                                                     
-                                                })
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
-                        })
+                        }
                     }
                 }
             }

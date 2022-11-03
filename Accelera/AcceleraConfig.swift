@@ -9,11 +9,11 @@ import Foundation
 
 /// Banner type
 public enum AcceleraBannerType: String {
-    /// Small banner that should be added on top
+    /// Small banner that will be added on top of the screen
     case notification
-    /// Middle size banner that should be displayed on top
+    /// Middle size banner that will be displayed on top of the screen
     case top
-    /// Middle size banner that should be centered
+    /// Middle size banner that will be centered
     case center
     /// Full screen banner
     case fullscreen
@@ -23,10 +23,11 @@ public enum AcceleraBannerType: String {
 public struct AcceleraConfig {
     /**
      Initializes configuration
+     
      - Parameters:
-         - token: application token.
+         - token: application token provided by the Accelera.
          - url: system url.
-         - userId: user identifier.
+         - userId: user unique identifier.
      */
     public init(token: String, url: String, userId: String) {
         self.token = token

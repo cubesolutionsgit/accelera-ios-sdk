@@ -27,6 +27,7 @@
 		5CAFAC6228B8BA430028CDF0 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAFAC6128B8BA430028CDF0 /* UILabel+.swift */; };
 		5CAFAC6628B8C4140028CDF0 /* Accelera.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 5CAFAC6528B8C4140028CDF0 /* Accelera.podspec */; };
 		5CAFAC6828B8C5700028CDF0 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 5CAFAC6728B8C5700028CDF0 /* LICENSE */; };
+		5CB478C628DA686A00116FD7 /* AcceleraSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB478C528DA686A00116FD7 /* AcceleraSpacer.swift */; };
 		5CEC23D628B6291300F0190F /* AcceleraBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEC23D528B6291300F0190F /* AcceleraBlock.swift */; };
 		5CEC23D828B6C1DD00F0190F /* NSMutableAttributedString+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEC23D728B6C1DD00F0190F /* NSMutableAttributedString+.swift */; };
 		5CEC23DA28B7941F00F0190F /* BidirectionalCollection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEC23D928B7941F00F0190F /* BidirectionalCollection+.swift */; };
@@ -75,6 +76,7 @@
 		5CAFAC6128B8BA430028CDF0 /* UILabel+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		5CAFAC6528B8C4140028CDF0 /* Accelera.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Accelera.podspec; sourceTree = "<group>"; };
 		5CAFAC6728B8C5700028CDF0 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		5CB478C528DA686A00116FD7 /* AcceleraSpacer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceleraSpacer.swift; sourceTree = "<group>"; };
 		5CEC23D528B6291300F0190F /* AcceleraBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceleraBlock.swift; sourceTree = "<group>"; };
 		5CEC23D728B6C1DD00F0190F /* NSMutableAttributedString+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+.swift"; sourceTree = "<group>"; };
 		5CEC23D928B7941F00F0190F /* BidirectionalCollection+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BidirectionalCollection+.swift"; sourceTree = "<group>"; };
@@ -126,11 +128,12 @@
 		5C18925C28B009F7004C5359 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				5C18928528B2B697004C5359 /* AcceleraRenderingElement.swift */,
 				5C18925728B0054A004C5359 /* AcceleraAbstractView.swift */,
+				5C18928528B2B697004C5359 /* AcceleraRenderingElement.swift */,
 				5CEC23D528B6291300F0190F /* AcceleraBlock.swift */,
 				5C18925D28B00A1A004C5359 /* AcceleraButton.swift */,
 				5C18925F28B00A3F004C5359 /* AcceleraLabel.swift */,
+				5CB478C528DA686A00116FD7 /* AcceleraSpacer.swift */,
 				5C18926128B00A5F004C5359 /* AcceleraImageView.swift */,
 			);
 			path = views;
@@ -385,6 +388,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CEC23D828B6C1DD00F0190F /* NSMutableAttributedString+.swift in Sources */,
+				5CB478C628DA686A00116FD7 /* AcceleraSpacer.swift in Sources */,
 				5CEC23DA28B7941F00F0190F /* BidirectionalCollection+.swift in Sources */,
 				5CF3813C28AABC9B002C691D /* WebClient.swift in Sources */,
 				5CEC23D628B6291300F0190F /* AcceleraBlock.swift in Sources */,

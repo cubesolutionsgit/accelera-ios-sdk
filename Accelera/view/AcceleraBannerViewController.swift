@@ -40,35 +40,28 @@ class AcceleraBannerViewController {
                 break
             case .success(let document):
                 self?.parseElement(document)
+                completion()
                 break
             }
-            completion()
+            
         }
     }
     
     // then we have to create UI views for rendering elements
     // must be run in main thread
     func createViews(completion: @escaping () -> Void) {
-        defer {
-            completion()
-        }
-        
         guard let topView = self.topView else {
             self.delegate?.onError("View was not created properly")
             return
         }
         
         self.createView(topView)
+        completion()
     }
     
     // we prepare elements here. Mainly for loading images
     // must be run in background thread
     func prepareViews(completion: @escaping () -> Void) {
-        
-        defer {
-            completion()
-        }
-        
         guard let topView = self.topView else {
             self.delegate?.onError("View was not prepared properly")
             return
@@ -78,6 +71,8 @@ class AcceleraBannerViewController {
         self.preparingGroup?.wait()
         
         self.preparingGroup = nil
+        
+        completion()
     }
     
     // finally we render everything. Adding attributes and constraints
