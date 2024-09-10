@@ -16,15 +16,22 @@ final class AcceleraAPI {
     
     var client: WebClient
     var config: AcceleraConfig
+        
+    @discardableResult
+    func logFirebaseEvent(data: JSON, completion: @escaping (JSON?, NetworkError?) -> ()) -> URLSessionDataTask? {
+        
+        return client.load(path: "/firebase/webhooks", method: .post, params: data, headers: ["Authorization": config.systemToken]) { result, error in
+            completion(result as? JSON, error)
+        }
+    }
     
     @discardableResult
     func logEvent(data: [String: Any], completion: @escaping (JSON?, NetworkError?) -> ()) -> URLSessionDataTask? {
         
         var params = JSON()
-        params["id"] = config.userId
         params["data"] = data
         
-        return client.load(path: "/events/event", method: .post, params: params, headers: ["Authorization": config.token]) { result, error in
+        return client.load(path: "/events/event", method: .post, params: params, headers: ["Authorization": config.systemToken]) { result, error in
             completion(result as? JSON, error)
         }
     }
@@ -32,10 +39,9 @@ final class AcceleraAPI {
     @discardableResult
     func loadBanner(completion: @escaping (JSON?, NetworkError?) -> ()) -> URLSessionDataTask? {
         
-        var params = JSON()
-        params["id"] = config.userId
+        let params = JSON()
         
-        return client.load(path: "/zvuk/template", method: .get, params: params, headers: ["Authorization": config.token]) { result, error in
+        return client.load(path: "/banner/template", method: .get, params: params, headers: ["Authorization": config.systemToken]) { result, error in
             completion(result as? JSON, error)
         }
     }

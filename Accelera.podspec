@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Accelera'
-  s.version          = '0.2.0'
-  s.summary          = 'Accelera mobile library'
+  s.version          = '0.3.0'
+  s.summary          = 'Accelera library'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -21,17 +21,25 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/cubesolutionsgit/zvuk-inapp.git'
+  s.homepage         = 'https://github.com/cubesolutionsgit/accelera-ios-sdk'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Evgeny Boganov' => 'boganov@gmail.com' }
-  s.source           = { :git => 'https://github.com/cubesolutionsgit/zvuk-inapp.git', :tag => s.version.to_s }
+  s.author           = { 'boganov' => 'boganov@gmail.com' }
+  s.source           = { :git => 'https://github.com/cubesolutionsgit/accelera-ios-sdk.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '12.0'
 
   s.source_files = 'Accelera/**/*'
+  s.swift_version = '5.10'
   
-  s.swift_version = "4.2"
-  
+  # s.resource_bundles = {
+  #   'Accelera' => ['Accelera/Assets/*.png']
+  # }
+
+  # s.public_header_files = 'Pod/Classes/**/*.h'
+  # s.frameworks = 'UIKit', 'MapKit'
+  # s.dependency 'AFNetworking', '~> 2.3'
+    s.dependency 'Firebase/Core'
+    s.dependency 'Firebase/Messaging'
 end

@@ -13,8 +13,22 @@
 		5CB478B928DA5F2700116FD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CB478B728DA5F2700116FD7 /* Main.storyboard */; };
 		5CB478BB28DA5F2900116FD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5CB478BA28DA5F2900116FD7 /* Assets.xcassets */; };
 		5CB478BE28DA5F2900116FD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CB478BC28DA5F2900116FD7 /* LaunchScreen.storyboard */; };
+		5CE2C8E32C7CB04C00B0D8A5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CE2C8E22C7CB04C00B0D8A5 /* GoogleService-Info.plist */; };
 		8B4E7551F7E4121988DC3A83 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EA59A82CA023A9227D1617C /* Pods_Example.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5CE2C8F32C7CE58100B0D8A5 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0AD65F9E32D4CBF30FF2628E /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -27,6 +41,11 @@
 		5CB478BA28DA5F2900116FD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5CB478BD28DA5F2900116FD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5CB478BF28DA5F2900116FD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5CE2C8E12C7CAF3A00B0D8A5 /* Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example.entitlements; sourceTree = "<group>"; };
+		5CE2C8E22C7CB04C00B0D8A5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5CE2C8EA2C7CE58100B0D8A5 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		5CE2C8EC2C7CE58100B0D8A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5CE2C8F42C7CE93D00B0D8A5 /* NotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationServiceExtension.entitlements; sourceTree = "<group>"; };
 		8064EFB6E0889FC7C60757D9 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -46,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				5CB478B028DA5F2700116FD7 /* Example */,
+				5CE2C8E92C7CE58100B0D8A5 /* NotificationServiceExtension */,
 				5CB478AF28DA5F2700116FD7 /* Products */,
 				CDEFC19D78ECB112D344BDB0 /* Pods */,
 				669B2A71EF18F68057C60AA7 /* Frameworks */,
@@ -63,15 +83,27 @@
 		5CB478B028DA5F2700116FD7 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				5CE2C8E12C7CAF3A00B0D8A5 /* Example.entitlements */,
 				5CB478B128DA5F2700116FD7 /* AppDelegate.swift */,
 				5CB478B328DA5F2700116FD7 /* SceneDelegate.swift */,
 				5CB478B528DA5F2700116FD7 /* ViewController.swift */,
+				5CE2C8E22C7CB04C00B0D8A5 /* GoogleService-Info.plist */,
 				5CB478B728DA5F2700116FD7 /* Main.storyboard */,
 				5CB478BA28DA5F2900116FD7 /* Assets.xcassets */,
 				5CB478BC28DA5F2900116FD7 /* LaunchScreen.storyboard */,
 				5CB478BF28DA5F2900116FD7 /* Info.plist */,
 			);
 			path = Example;
+			sourceTree = "<group>";
+		};
+		5CE2C8E92C7CE58100B0D8A5 /* NotificationServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				5CE2C8F42C7CE93D00B0D8A5 /* NotificationServiceExtension.entitlements */,
+				5CE2C8EA2C7CE58100B0D8A5 /* NotificationService.swift */,
+				5CE2C8EC2C7CE58100B0D8A5 /* Info.plist */,
+			);
+			path = NotificationServiceExtension;
 			sourceTree = "<group>";
 		};
 		669B2A71EF18F68057C60AA7 /* Frameworks */ = {
@@ -88,7 +120,6 @@
 				0AD65F9E32D4CBF30FF2628E /* Pods-Example.debug.xcconfig */,
 				8064EFB6E0889FC7C60757D9 /* Pods-Example.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -104,6 +135,7 @@
 				5CB478AB28DA5F2700116FD7 /* Frameworks */,
 				5CB478AC28DA5F2700116FD7 /* Resources */,
 				DD88A06FE7F09DF3065B59F7 /* [CP] Embed Pods Frameworks */,
+				5CE2C8F32C7CE58100B0D8A5 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -121,7 +153,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1400;
+				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					5CB478AD28DA5F2700116FD7 = {
@@ -153,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CB478BE28DA5F2900116FD7 /* LaunchScreen.storyboard in Resources */,
+				5CE2C8E32C7CB04C00B0D8A5 /* GoogleService-Info.plist in Resources */,
 				5CB478BB28DA5F2900116FD7 /* Assets.xcassets in Resources */,
 				5CB478B928DA5F2700116FD7 /* Main.storyboard in Resources */,
 			);
@@ -353,10 +386,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0AD65F9E32D4CBF30FF2628E /* Pods-Example.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Example/Example.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BS82S4UJ9K;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Example/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -369,7 +405,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.example.Example;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.accelera.testing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -381,10 +417,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8064EFB6E0889FC7C60757D9 /* Pods-Example.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Example/Example.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BS82S4UJ9K;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Example/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -397,7 +436,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.example.Example;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.accelera.testing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

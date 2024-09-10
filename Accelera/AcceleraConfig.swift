@@ -25,17 +25,17 @@ public struct AcceleraConfig {
      Initializes configuration
      
      - Parameters:
-         - token: application token provided by the Accelera.
-         - url: system url.
-         - userId: user unique identifier.
+         - systemToken: application token provided by Accelera.
+         - url: system url provided by Accelera.
+         - userInfo: string or valid JSON string of the user information that you want to share with Accelera.
      */
-    public init(token: String, url: String, userId: String) {
-        self.token = token
+    public init(systemToken: String, url: String, userInfo: String? = nil) {
+        self.systemToken = systemToken
         self.url = url
-        self.userId = userId
-    }    
+        self.userInfo = userInfo
+    }
     
-    let token: String
+    let systemToken: String
     let url: String
-    let userId: String
+    var userInfo: String?
 }

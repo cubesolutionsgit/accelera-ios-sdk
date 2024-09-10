@@ -1,24 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyo-u1-nzV">
+                                <rect key="frame" x="81.666666666666686" y="59" width="230" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Request Push Notifications"/>
+                                <connections>
+                                    <action selector="requestPushNotifications:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gju-uv-DkW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xaj-xP-aDd">
+                                <rect key="frame" x="126.66666666666669" y="102" width="140" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Set user profile"/>
+                                <connections>
+                                    <action selector="setUserProfile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GOO-9N-Sj3"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OgW-e6-Kjg">
+                                <rect key="frame" x="0.0" y="145" width="393" height="673"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Xaj-xP-aDd" firstAttribute="top" secondItem="gyo-u1-nzV" secondAttribute="bottom" constant="8" id="26P-vf-cAe"/>
+                            <constraint firstItem="gyo-u1-nzV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="30D-fi-0WC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OgW-e6-Kjg" secondAttribute="trailing" id="4RO-56-fhW"/>
+                            <constraint firstItem="OgW-e6-Kjg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="APM-mA-TXF"/>
+                            <constraint firstItem="Xaj-xP-aDd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ade-BY-p3a"/>
+                            <constraint firstItem="OgW-e6-Kjg" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="D74-mM-Dyl"/>
+                            <constraint firstItem="OgW-e6-Kjg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="IP8-BK-U5b"/>
+                            <constraint firstItem="OgW-e6-Kjg" firstAttribute="top" secondItem="Xaj-xP-aDd" secondAttribute="bottom" constant="8" id="WqG-Oh-aYG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="OgW-e6-Kjg" secondAttribute="bottom" id="hgE-Hi-FBW"/>
+                            <constraint firstItem="gyo-u1-nzV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mkV-T1-5hb"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="logTextView" destination="OgW-e6-Kjg" id="z7I-gI-8NE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="58.778625954198468" y="-2.1126760563380285"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

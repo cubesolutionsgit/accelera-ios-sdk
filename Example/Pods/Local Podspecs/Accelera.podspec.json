@@ -1,9 +1,17 @@
 {
   "name": "Accelera",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "summary": "Accelera mobile library",
+  "dependencies": {
+    "Firebase/Core": [
+
+    ],
+    "Firebase/Messaging": [
+
+    ]
+  },
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/cubesolutionsgit/zvuk-inapp.git",
+  "homepage": "https://github.com/cubesolutionsgit/accelera-ios-sdk.git",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,13 +20,13 @@
     "Evgeny Boganov": "boganov@gmail.com"
   },
   "source": {
-    "git": "https://github.com/cubesolutionsgit/zvuk-inapp.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/cubesolutionsgit/accelera-ios-sdk.git",
+    "tag": "0.2.0"
   },
   "platforms": {
-    "ios": "12.0"
+    "ios": "13.0"
   },
   "source_files": "Accelera/**/*",
-  "swift_versions": "4.2",
-  "swift_version": "4.2"
+  "swift_versions": "5.10",
+  "swift_version": "5.10"
 }
